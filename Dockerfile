@@ -14,4 +14,7 @@ RUN /usr/share/elasticsearch/bin/plugin install elasticsearch/elasticsearch-anal
     && /usr/share/elasticsearch/bin/plugin install elasticsearch/elasticsearch-mapper-attachments/2.4.2
 # Expose port
 EXPOSE 9200 9300
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /*.sh
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
